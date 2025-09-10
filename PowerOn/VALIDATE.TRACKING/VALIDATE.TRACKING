@@ -1,0 +1,190 @@
+[***************************************************************************************
+*****  Copyright 2025 Credit Union Development. All rights reserved.   rev 06-2025  *****
+*****                                                                              *****
+*****  This validation specfile validates TRACKING record inputs.                 *****
+*****  Specifically validates fraud type codes for TRACKING TYPE 31.             *****
+***************************************************************************************]
+[
+ Repgen Name      - VALIDATE.TRACKING
+ Created By    : Nate Tallent
+ Created On    : 6/18/25
+ Modifications : Initial creation for fraud type validation
+]
+
+VALIDATION
+
+TARGET = TRACKING
+
+DEFINE
+ #INCLUDE "RB.LISTEXPAND.DEF"
+ #INCLUDE "RD.GETDATA.DEF"
+ TRUE = 1
+ FALSE = 0
+ VALIDFRAUDTYPE = NUMBER
+ ALLOWEDUSER = NUMBER
+ Y = NUMBER
+ CURRENTTOTAL = MONEY
+ REMAININGAMOUNT = MONEY
+ ATTEMPTEDAMOUNT = MONEY
+ MISSINGAMOUNT = MONEY
+ OVERAMOUNT = MONEY
+END
+
+SETUP
+ [Check user privilege for TYPE 31 tracking records - only Member Services (28)]
+ IF SYSUSERNUMBER<>0 AND TRACKING:TYPE = 31 THEN
+  DO
+   LELISTINPUT="28"
+   CALL CHECKPRIV
+   IF ALLOWEDUSER=FALSE THEN
+    DO
+     @VALIDATEERROR="Access denied - fraud tracking"
+    END
+  END
+
+ [Validate fraud type primary when USERCODE4 field (field 43) is being modified]
+ IF @VALIDATEFIELDNUMBER = 43 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Valid fraud type codes are 1 through 11]
+     IF @VALIDATECODEINPUT < 1 OR @VALIDATECODEINPUT > 11 THEN
+      DO
+       @VALIDATEERROR = "INVALID INPUT REFER TO HELPFILE"
+      END
+    END
+  END
+
+ [Validate fraud detection dept when USERCODE3 field (field 42) is being modified]
+ IF @VALIDATEFIELDNUMBER = 42 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Valid fraud detection dept codes are 1, 2, 3, or 4]
+     IF @VALIDATECODEINPUT < 1 OR @VALIDATECODEINPUT > 4 THEN
+      DO
+       @VALIDATEERROR = "INVALID INPUT REFER TO HELPFILE"
+      END
+    END
+  END
+
+ [Validate fraud type secondary when USERCODE5 field (field 44) is being modified]
+ IF @VALIDATEFIELDNUMBER = 44 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Valid fraud type codes are 1 through 11]
+     IF @VALIDATECODEINPUT < 1 OR @VALIDATECODEINPUT > 11 THEN
+      DO
+       @VALIDATEERROR = "INVALID INPUT REFER TO HELPFILE"
+      END
+    END
+  END
+
+ [Validate flagged in Verafin when USERCODE6 field (field 45) is being modified]
+ IF @VALIDATEFIELDNUMBER = 45 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Valid values are 1 or 2 only]
+     IF @VALIDATECODEINPUT <> 1 AND @VALIDATECODEINPUT <> 2 THEN
+      DO
+       @VALIDATEERROR = "INVALID INPUT REFER TO HELPFILE"
+      END
+    END
+  END
+
+ [Validate fraud status when USERCODE7 field (field 46) is being modified]
+ IF @VALIDATEFIELDNUMBER = 46 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Valid values are 1 or 2 only]
+     IF @VALIDATECODEINPUT <> 1 AND @VALIDATECODEINPUT <> 2 THEN
+      DO
+       @VALIDATEERROR = "INVALID INPUT REFER TO HELPFILE"
+      END
+    END
+  END
+
+ [Validate fraud detection date when USERDATE2 field (field 51) is being modified]
+ [USERDATE1 = Fraud Attempt Date (field 50), USERDATE2 = Fraud Detection Date (field 51)]
+ IF @VALIDATEFIELDNUMBER = 51 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Detection date must be on or after attempt date]
+     IF @VALIDATEDATEINPUT < TRACKING:USERDATE1 THEN
+      DO
+       @VALIDATEERROR = "Detection must be >= attempt date"
+      END
+    END
+  END
+
+ [Validate fraud amounts - fields 30-33 for TYPE 31 records]
+ [Field 30 = USERAMOUNT1 = Attempted Fraud Amount (total)]
+ [Field 31 = USERAMOUNT2 = Fraud Prevented]
+ [Field 32 = USERAMOUNT3 = Credit Union Fraud Loss]
+ [Field 33 = USERAMOUNT4 = Member Loss]
+
+ [Amount validation moved to final OK validation only (field 999)]
+
+ [Final validation when user clicks OK - field 999]
+ IF @VALIDATEFIELDNUMBER = 999 THEN
+  DO
+   [Only validate if this is a TYPE 31 tracking record]
+   IF TRACKING:TYPE = 31 THEN
+    DO
+     [Check if fraud amounts sum correctly when attempted amount is entered]
+     IF TRACKING:USERAMOUNT1 > 0.00 THEN
+      DO
+       CURRENTTOTAL = TRACKING:USERAMOUNT2 + TRACKING:USERAMOUNT3 + TRACKING:USERAMOUNT4
+       
+       [Validate that the sum equals the attempted fraud amount]
+       IF CURRENTTOTAL <> TRACKING:USERAMOUNT1 THEN
+        DO
+         IF CURRENTTOTAL < TRACKING:USERAMOUNT1 THEN
+          DO
+           MISSINGAMOUNT = TRACKING:USERAMOUNT1 - CURRENTTOTAL
+           @VALIDATEERROR = "Fraud amounts don't balance"
+          END
+         ELSE
+          DO
+           OVERAMOUNT = CURRENTTOTAL - TRACKING:USERAMOUNT1
+           @VALIDATEERROR = "Fraud amounts don't balance"
+          END
+        END
+      END
+    END
+  END
+
+END
+
+PRINT TITLE="VALIDATE.TRACKING"
+ SUPPRESSNEWLINE
+END [PRINT]
+
+[ ------------------- ]
+  PROCEDURE CHECKPRIV
+[ ------------------- ]
+ ALLOWEDUSER=FALSE
+ CALL LISTEXPAND
+ FOR Y=1 TO 999
+  DO
+   IF LELIST(Y)=TRUE THEN
+    DO
+     IF GETDATANUMBER(GETUSERPRIVILEGEGROUP,SYSUSERNUMBER,Y)=TRUE THEN
+      DO
+       ALLOWEDUSER=TRUE
+      END
+    END
+  END
+END
+
+#INCLUDE "RB.LISTEXPAND"
