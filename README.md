@@ -8,6 +8,7 @@ This repository is organized by programming language and technology stack:
 
 ### Python
 - **[PDF Watcher Service](python/pdf-watcher/)** - A production-grade Windows service for monitoring and processing PDF files with automated email notifications and file handling
+- **[Funding Report Generator](python/funding_script/)** - Data processing script that matches CSV and Excel files to generate member funding reports with joint owner filtering and automated formatting
 
 ### JavaScript - PowerFrame Development
 - **[MEM_WIRE_TRANSFER](javascript/MEM_WIRE_TRANSFER/)** - Comprehensive PowerFrame JavaScript enhancement for wire transfer forms, featuring:
