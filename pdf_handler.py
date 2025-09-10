@@ -1,10 +1,8 @@
 """
 PDF Handler - Handler for processing new PDF files detected in the watch directory
 
-Authors:
+Author:
     Nate Tallent - Original creator and primary developer
-    Claude (Anthropic) - AI assistant for enhancements and maintenance
-
 Created: 4/14/2025
 Last Modified: 5/29/2025
 """
@@ -252,3 +250,4 @@ class WirePDFHandler(FileSystemEventHandler):
                         time.sleep(1)
                 else:
                     logging.error(f"Failed to delete temp subfolder {mask_path(temp_subdir)} after 3 attempts")
+
