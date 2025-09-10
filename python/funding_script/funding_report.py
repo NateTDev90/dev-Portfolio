@@ -6,8 +6,8 @@ import csv
 from openpyxl import load_workbook
 
 # Configuration Section
-WORKING_DIRECTORY = r"S:\IT\Operations\Online Account Opening\FundingReports\Python Funding Script"  # Set your working directory here
-REPORT_OUTPUT_DIRECTORY = r"S:\IT\Operations\Online Account Opening\FundingReports\FundingReports"  # Set your report output directory here
+WORKING_DIRECTORY = r"./input"  # Set your working directory here
+REPORT_OUTPUT_DIRECTORY = r"./output"  # Set your report output directory here
 CSV_FILE_PATTERN = "*.csv"  # Pattern to find CSV files
 EXCEL_FILE = "Transaction_Listing.xlsx"  # Name of the Excel file
 SHEET_NAME = "Report (Page 1)"  # Name of the sheet in the Excel file

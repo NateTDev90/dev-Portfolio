@@ -30,17 +30,28 @@ A Python script that processes funding data by matching CSV and Excel files to g
 2. **Excel File**: `Transaction_Listing.xlsx` with sheet "Report (Page 1)" containing:
    - Invoice Number
 
+## Directory Structure
+```
+funding_script/
+├── funding_report.py
+├── README.md
+├── input/          # Place your input files here
+│   ├── *.csv       # Application data files
+│   └── Transaction_Listing.xlsx
+└── output/         # Generated reports will be saved here
+```
+
 ## Configuration
-Update the following variables in the script:
-- `WORKING_DIRECTORY`: Directory containing input files
-- `REPORT_OUTPUT_DIRECTORY`: Directory for output reports
+Update the following variables in the script if needed:
+- `WORKING_DIRECTORY`: Directory containing input files (default: "./input")
+- `REPORT_OUTPUT_DIRECTORY`: Directory for output reports (default: "./output")
 - `CSV_FILE_PATTERN`: Pattern to find CSV files (default: "*.csv")
 - `EXCEL_FILE`: Name of Excel file (default: "Transaction_Listing.xlsx")
 - `SHEET_NAME`: Excel sheet name (default: "Report (Page 1)")
 
 ## Usage
-1. Place CSV and Excel files in the working directory
-2. Configure directory paths in the script
+1. Create `input` and `output` directories in the script folder
+2. Place CSV and Excel files in the `input` directory
 3. Run the script:
    ```bash
    python funding_report.py
