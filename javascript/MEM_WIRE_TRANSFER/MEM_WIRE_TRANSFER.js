@@ -3,10 +3,10 @@
  * POWERFRAME JAVASCRIPT CREDIT UNION DEVELOPMENT SYSTEM
  * ================================================================================
  * 
- * Copyright (c) 2024-2025 Nathaniel Tallent & Claude (Anthropic AI)
+ * Copyright (c) 2024-2025 Nathaniel Tallent
  * All Rights Reserved.
  * 
- * This work is the intellectual property of Nathaniel Tallent and Claude AI.
+ * This work is the intellectual property of Nathaniel Tallent.
  * No part of this software may be reproduced, distributed, or transmitted 
  * in any form or by any means, including photocopying, recording, or other 
  * electronic or mechanical methods, without the prior written permission 
@@ -24,9 +24,8 @@
  * Creation Timestamp: 2025-05-30T03:02:50Z
  * Digital Signature: Protected under DMCA and International Copyright Law
  * 
- * AUTHORS:
+ * AUTHOR:
  * - Nathaniel Tallent (Primary Developer & Credit Union Domain Expert)
- * - Claude AI (Anthropic) (Co-Developer & Code Architecture Assistant)
  * 
  * UNAUTHORIZED USE NOTICE:
  * This software is protected by copyright law and international treaties.

@@ -95,7 +95,7 @@ except ValueError:
     raise ValueError("SMTP_PORT must be a valid port number")
 EMAIL_FROM = get_required_env_var("OPCON_ALERT_EMAIL")
 ERROR_EMAIL_TO = get_required_env_var("ERROR_EMAIL_TO").split(",")
-EMAIL_DOMAIN = get_required_env_var("EMAIL_DOMAIN", "LNFCU.COM")
+EMAIL_DOMAIN = get_required_env_var("EMAIL_DOMAIN", "COMPANY.COM")
 PDF_RENAME_FORMAT = get_required_env_var("PDF_RENAME_FORMAT", "{base}_{timestamp}.pdf")
 if "{base}" not in PDF_RENAME_FORMAT or "{timestamp}" not in PDF_RENAME_FORMAT:
     logging.error("PDF_RENAME_FORMAT must contain {base} and {timestamp} placeholders")

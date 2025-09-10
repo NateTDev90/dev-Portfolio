@@ -231,7 +231,7 @@ Enable detailed logging by opening browser console to see comprehensive debug in
 
 ## License
 
-Copyright (c) 2024-2025 Nathaniel Tallent & Claude (Anthropic AI). All Rights Reserved.
+Copyright (c) 2024-2025 Nathaniel Tallent. All Rights Reserved.
 
 Credit Union employees are granted limited permission to modify, adapt, and use this software solely for legitimate business operations of their respective credit union.
 
