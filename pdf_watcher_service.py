@@ -1,10 +1,8 @@
 """
 PDF Watcher Service - Windows service to monitor a directory for new PDF files and process them
 
-Authors:
+Author:
     Nate Tallent - Original creator and primary developer
-    Claude (Anthropic) - AI assistant for enhancements and maintenance
-
 Created: 4/14/2025
 Last Modified: 5/29/2025
 """
