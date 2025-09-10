@@ -3,8 +3,6 @@ Config - Configuration settings and utility functions for the PDF Watcher Servic
 
 Authors:
     Nate Tallent - Original creator and primary developer
-    Claude (Anthropic) - AI assistant for enhancements and maintenance
-
 Created: 4/14/2025
 Last Modified: 5/29/2025
 """
