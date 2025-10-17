@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nathaniel Tallent — Resume</title>
+  <style>
+    /* Modern visual resume design */
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --border: #e5e7eb;
+      --background: #ffffff;
+      --accent: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 8.5in;
+      margin: 20px auto;
+      background: var(--background);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .name {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.9;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      opacity: 0.8;
+    }
+
+    .main-content {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--primary-light);
+    }
+
+    .summary {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--accent);
+      padding: 20px;
+      border-radius: 6px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .competencies {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .skill-category {
+      background: var(--accent);
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 3px solid var(--primary-light);
+    }
+
+    .skill-category-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .skill-items {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .pills {
+      margin-top: 12px;
+    }
+
+    .pill {
+      display: inline-block;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      margin: 4px 6px 4px 0;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .job {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .job:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .job-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .company {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2px 0 0 0;
+    }
+
+    .dates {
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .achievements {
+      margin-top: 12px;
+    }
+
+    .achievements ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .achievements li {
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .achievements li:before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 10px;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-light);
+      border-radius: 50%;
+    }
+
+    .education-item {
+      background: var(--accent);
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 3px solid var(--primary-light);
+    }
+
+    .degree {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+
+    .school {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .grad-date {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+      }
+
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+      }
+
+      .header {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .contact-item a {
+        color: white !important;
+        text-decoration: underline !important;
+      }
+
+      .section {
+        break-inside: avoid;
+      }
+
+      .job {
+        break-inside: avoid;
+      }
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .container {
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .header {
+        padding: 30px 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .name {
+        font-size: 28px;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <h1 class="name">Nathaniel Tallent</h1>
+        <div class="title">Application Support Specialist — Financial Services Technology</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            📍 Louisville, KY
+          </div>
+          <div class="contact-item">
+            📧 <a href="mailto:njtall01@icloud.com">njtall01@icloud.com</a>
+          </div>
+          <div class="contact-item">
+            📱 502-693-0330
+          </div>
+          <div class="contact-item">
+            <a href="https://www.linkedin.com/in/nathaniel-tallent">💼 linkedin.com/in/nathaniel-tallent</a>
+          </div>
+          <div class="contact-item">
+            💻 <a href="https://github.com/NateTDev90/dev-Portfolio">github.com/NateTDev90/dev-Portfolio</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <section class="section">
+        <h2 class="section-title">Summary</h2>
+        <div class="summary">
+          Application Support Specialist with 5+ years of experience maintaining mission-critical financial technology systems in large-scale environments. Expert in production support, incident management, and automation scripting (Python, PowerShell, Batch). Proven track record supporting 117,000+ users and $2.3B+ in assets with 24/7 on-call availability. Skilled in troubleshooting complex issues across applications and infrastructure, performing root cause analysis, and collaborating with cross-functional teams to ensure operational stability and availability.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="competencies">
+          Production Support (24/7 On-Call) • Incident Management • Problem Management • Change Management • Root Cause Analysis • System Administration • Database Management • Batch Processing & Automation • Release Planning • Vendor Coordination • Technical Documentation • User Training • Regulatory Compliance • Cross-Functional Collaboration • Version Control
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="skill-category-title">Programming & Scripting</div>
+            <div class="skill-items">Python (workflow automation, ETL pipelines, file processing, system monitoring); PowerShell (Windows automation, task scheduling, system administration); Batch Scripting (Windows automation, job scheduling); SQL (SQL Server, query optimization, stored procedures, troubleshooting); JavaScript (ES6+, form validation, client-side scripting); API Integrations (REST, JSON, XML, SOAP)</div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Operating Systems & Platforms</div>
+            <div class="skill-items">Windows Server (administration, performance tuning, troubleshooting); .NET Framework; SQL Server (administration, backup/recovery, performance monitoring, database maintenance); Active Directory (user/group management, access control); Git/Bitbucket (version control); Exposure to Linux/Unix environments</div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Application Support & Automation</div>
+            <div class="skill-items">Production Environment Monitoring; Health Check Automation; Log Analysis & Troubleshooting; OpCon (job scheduling, dependency management, SLA monitoring); Batch Job Processing; Alerting & Escalation; System Performance Analysis; File Transfer Automation (SFTP/FTP)</div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Core Systems & Financial Technology</div>
+            <div class="skill-items">Symitar Episys (core banking administration, batch processing); Fiserv XP2 (core system administration, SQL Server backend); Payment Processing Systems; Database Administration (SQL Server, backup/recovery, data integrity); SFTP/FTP File Transfer; Vendor API Integration; Data Transformation (CSV/XML/JSON)</div>
+          </div>
+        </div>
+        <div class="pills">
+          <span class="pill">Incident Management</span><span class="pill">Problem Management</span><span class="pill">Change Management</span><span class="pill">Version Control</span><span class="pill">Testing/QA</span><span class="pill">Technical Documentation</span><span class="pill">Remote Support Tools</span><span class="pill">Regex</span><span class="pill">Active Directory</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Application Support Specialist</h3>
+              <div class="company">L&N Federal Credit Union</div>
+            </div>
+            <div class="dates">2020 – July 2025</div>
+          </div>
+          <div class="achievements">
+            <ul>
+              <li>Provided end-to-end application support for mission-critical financial systems supporting 117,000+ members and $2.3B+ in assets; ensured operational stability, availability, and performance of production environments.</li>
+              <li>Monitored production environments for anomalies through automated health checks and log analysis; proactively identified and addressed service interruptions, system performance degradation, and batch job failures to maintain service availability.</li>
+              <li>Responded to service requests from client-facing support teams, operations, risk/control partners, and end users; managed incident escalation, problem resolution, and change management procedures to ensure timely issue resolution.</li>
+              <li>Developed automation scripts using Python, PowerShell, and Batch scripting to automate health checks, file processing, and recurring workflows; implemented error handling, retry logic, and comprehensive logging for audit compliance.</li>
+              <li>Worked closely with software engineers and end users to troubleshoot day-to-day issues, conduct root cause analysis on production incidents, and drive actions to resolution with focus on preventing future occurrences.</li>
+              <li>Administered Windows Server and SQL Server environments for core banking platforms (Fiserv XP2, Symitar Episys); performed version updates, database maintenance, backup/recovery procedures, and server infrastructure support; managed Active Directory user access and group permissions.</li>
+              <li>Maintained 24/7 on-call availability for Close of Business (COB), End of Month (EOM), and End of Year (EOY) batch processing; coordinated incident response, escalation procedures, and recovery actions during production outages.</li>
+              <li>Developed and maintained technical documentation for operational procedures, troubleshooting guides, and system configurations; led testing coordination for system updates and vendor releases.</li>
+              <li>Administered job scheduling and automation platform (OpCon) with dependency management and SLA monitoring; orchestrated daily batch processes including payment processing, credit bureau reporting, and regulatory notices.</li>
+              <li>Collaborated with cross-functional teams including developers, operations, compliance, and business stakeholders to translate requirements into technical solutions and ensure successful project delivery.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Loan Originator</h3>
+              <div class="company">L&N Federal Credit Union</div>
+            </div>
+            <div class="dates">2018 – 2020</div>
+          </div>
+          <div class="achievements">
+            <ul>
+              <li>Ranked <strong>#1 Loan Originator in 2019</strong> by total loan dollar amount; developed deep knowledge of financial services operations, lending workflows, compliance requirements, and customer-facing processes.</li>
+              <li>Leveraged business operations experience to align IT support work with business requirements, member impact, and regulatory compliance needs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Teller</h3>
+              <div class="company">L&N Federal Credit Union</div>
+            </div>
+            <div class="dates">2017 – 2018</div>
+          </div>
+          <div class="achievements">
+            <ul>
+              <li>Built foundational knowledge in financial services operations, member service, and core banking transaction processing on Fiserv XP2 platform.</li>
+              <li>Developed understanding of account structures, payment processing, regulatory compliance (BSA/AML, CTR/SAR reporting), and workflows that informed future technology support roles.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+          <div class="degree">Bachelor of Science in Accountancy</div>
+          <div class="school">University of Louisville</div>
+          <div class="grad-date">Graduated 2014</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

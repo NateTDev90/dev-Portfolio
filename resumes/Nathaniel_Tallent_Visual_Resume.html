@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nathaniel Tallent — Resume</title>
+  <style>
+    /* Modern visual resume design */
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --border: #e5e7eb;
+      --background: #ffffff;
+      --accent: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 8.5in;
+      margin: 20px auto;
+      background: var(--background);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .name {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.9;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      opacity: 0.8;
+    }
+
+    .main-content {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--primary-light);
+    }
+
+    .summary {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--accent);
+      padding: 20px;
+      border-radius: 6px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .competencies {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .skill-category {
+      background: var(--accent);
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 3px solid var(--primary-light);
+    }
+
+    .skill-category-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .skill-items {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .pills {
+      margin-top: 12px;
+    }
+
+    .pill {
+      display: inline-block;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      margin: 4px 6px 4px 0;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .job {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .job:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .job-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .company {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2px 0 0 0;
+    }
+
+    .dates {
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .achievements {
+      margin-top: 12px;
+    }
+
+    .achievements ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .achievements li {
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .achievements li:before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 10px;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-light);
+      border-radius: 50%;
+    }
+
+    .project {
+      background: var(--accent);
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--primary-light);
+    }
+
+    .project:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .project-description {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .project-tech {
+      font-size: 13px;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .education-item {
+      background: var(--accent);
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 3px solid var(--primary-light);
+    }
+
+    .degree {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+
+    .school {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .grad-date {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+      }
+
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+      }
+
+      .header {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .contact-item a {
+        color: white !important;
+        text-decoration: underline !important;
+      }
+
+      .section {
+        break-inside: avoid;
+      }
+
+      .job {
+        break-inside: avoid;
+      }
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .container {
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .header {
+        padding: 30px 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .name {
+        font-size: 28px;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <h1 class="name">Nathaniel Tallent</h1>
+        <div class="title">Application Support Analyst — Credit Union Technology (XP2 & Symitar)</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            📍 Louisville, KY
+          </div>
+          <div class="contact-item">
+            📧 <a href="mailto:njtall01@icloud.com">njtall01@icloud.com</a>
+          </div>
+          <div class="contact-item">
+            📱 502-693-0330
+          </div>
+          <div class="contact-item">
+            <a href="https://www.linkedin.com/in/nathaniel-tallent">💼 linkedin.com/in/nathaniel-tallent</a>
+          </div>
+          <div class="contact-item">
+            💻 <a href="https://github.com/NateTDev90/dev-Portfolio">github.com/NateTDev90/dev-Portfolio</a>
+          </div>
+          <div class="contact-item">
+            🌐 Open to Remote
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <section class="section">
+        <h2 class="section-title">Summary</h2>
+        <div class="summary">
+          Results-driven Application Support Analyst with experience across credit-union technology, operations, and lending.
+          Core system subject matter expert (XP2 & Symitar) skilled in database administration, PowerOn development,
+          PowerFrame/PowerDocs customization, and automation. Adept at translating business requirements into technical
+          solutions, streamlining workflows, ensuring compliance, and maintaining mission-critical financial systems supporting 117,000+ credit union members and $2.3B+ in assets.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="competencies">
+          System Administration • Database Management • Batch Processing & Automation •
+          Incident Management • Root Cause Analysis • Vendor Coordination • Change Management •
+          Release Planning • Production Support • Technical Documentation • User Training •
+          Regulatory Compliance • Cross-Functional Collaboration • Version Control • Integration Development
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="skill-category-title">Languages & Frameworks</div>
+            <div class="skill-items">Python (workflow automation, GL posting, ETL pipelines, file processing); JavaScript (ES6+, form validation, PowerDocs enhancements, client-side scripting); PowerOn (specfiles, batch automation, compliance fixes, report generation); SQL (SQL Server, query optimization, reporting, troubleshooting, database administration); API Integrations (REST, JSON, XML, SOAP)</div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Core Systems & Platforms</div>
+            <div class="skill-items">Symitar Episys (core administration, PowerOn development, PowerDocs, web services); Fiserv XP2 (core system expert, version updates, SQL Server administration, server/database maintenance); PowerFrame / PowerDocs (form design, workflow automation, JavaScript integration); Synergy Imaging (document management); eSign Administration (digital signature workflows); OpCon Automation (job scheduling, dependency management, SLA monitoring); ELA / EMA Administration (lending/member applications)</div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Database & Integration</div>
+            <div class="skill-items">SQL Server Administration; Database Backup & Recovery; Data Integrity Monitoring; SFTP/FTP File Transfer; Vendor API Integration; File-Based Integration; Data Transformation (CSV/XML/JSON)</div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Expertise</div>
+            <div class="skill-items">Core Conversions & Data Migration; Process Automation & Scripting; System Administration & Monitoring; Incident Management & Root Cause Analysis; Vendor & Project Management; Compliance & Regulatory Reporting (Metro 2, BSA/AML); Credit Union Operations & Lending Workflows; Production Support (24/7 On-Call)</div>
+          </div>
+        </div>
+        <div class="pills">
+          <span class="pill">Git/GitHub</span><span class="pill">Version Control</span><span class="pill">Change Management</span><span class="pill">Regex</span><span class="pill">Shell Scripting</span><span class="pill">Testing/QA</span><span class="pill">Technical Documentation</span><span class="pill">Remote Support Tools</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Application Support Specialist</h3>
+              <div class="company">L&N Federal Credit Union</div>
+            </div>
+            <div class="dates">2020 – July 2025</div>
+          </div>
+          <div class="achievements">
+            <ul>
+              <li>Led core system administration for both Fiserv XP2 and Symitar Episys platforms supporting 117,000+ members and $2.3B+ in assets; performed version updates, maintained SQL Server databases, and supported associated production server hardware infrastructure.</li>
+              <li>Orchestrated Symitar PowerFrame/PowerDocs administration; successfully converted 50+ member-facing forms during core system migration and enhanced forms with JavaScript validations, dynamic field logic, and conditional workflow automation.</li>
+              <li>Engineered, corrected, and optimized PowerOn specfiles to improve system functionality, ensure regulatory compliance (Metro 2, BSA/AML), and fulfill executive/user enhancement requests.</li>
+              <li>Maintained and automated mission-critical recurring processes including Metro 2 credit bureau reporting, monthly statement uploads to third-party vendors, daily regulatory notices, and General Ledger (GL) posting workflows.</li>
+              <li>Administered five enterprise systems: Enhanced Lending Application (ELA), Enhanced Member Application (EMA), eSign digital signature platform, Synergy Imaging document management, and OpCon job scheduling/automation suite.</li>
+              <li>Engineered Python and PowerOn automation scripts that eliminated manual processing across finance, lending, and compliance departments; implemented error handling, retry logic, and audit-friendly logging frameworks.</li>
+              <li>Maintained 24/7 on-call availability for mission-critical Close of Business (COB), End of Month (EOM), and End of Year (EOY) batch processing; coordinated incident response, root cause analysis, and recovery procedures for production outages.</li>
+              <li>Created comprehensive user and operations documentation; led testing coordination for system updates and vendor releases; provided tier-2/tier-3 troubleshooting support via ticketing system and direct phone consultation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Loan Originator</h3>
+              <div class="company">L&N Federal Credit Union</div>
+            </div>
+            <div class="dates">2018 – 2020</div>
+          </div>
+          <div class="achievements">
+            <ul>
+              <li>Ranked <strong>#1 Loan Originator in 2019</strong> by total loan dollar amount; developed knowledge of lending operations, underwriting, and compliance.</li>
+              <li>Leveraged lending experience to align future IT work with business requirements and member impact.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Teller</h3>
+              <div class="company">L&N Federal Credit Union</div>
+            </div>
+            <div class="dates">2017 – 2018</div>
+          </div>
+          <div class="achievements">
+            <ul>
+              <li>Built foundational knowledge in credit union operations, member service, and Fiserv XP2 core transaction processing.</li>
+              <li>Developed understanding of account structures, regulatory compliance (BSA/AML, CTR/SAR reporting), and member-facing workflows that informed future technology roles.</li>
+              <li>Recognized for technical aptitude and strong performance; promoted to Loan Originator role within one year.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project">
+          <div class="project-title">PowerOn — Compliance & Posting Automations</div>
+          <div class="project-meta">Symitar / XP2 • Metro 2, GL, statements & notices</div>
+          <div class="project-description">
+            Engineered credit-bureau export automation adhering to Metro 2 format specification with multi-stage data validation, error handling, and automated retry logic; integrated with OpCon scheduler for daily execution and secure SFTP delivery to external vendor endpoints.
+          </div>
+          <div class="project-description">
+            Implemented comprehensive logging framework with timestamp correlation, error categorization, and health-check monitoring endpoints to enable rapid incident triage and reduce mean-time-to-resolution for batch job failures.
+          </div>
+          <div class="project-tech">Technologies: PowerOn (Symitar), Python, OpCon job scheduler, SFTP/secure file transfer, SQL Server, batch scripting</div>
+        </div>
+
+        <div class="project">
+          <div class="project-title">PowerDocs/PowerFrame — Forms Modernization</div>
+          <div class="project-meta">Member-facing forms • JavaScript validation • eSign</div>
+          <div class="project-description">
+            Re-architected 50+ legacy member-facing forms with client-side JavaScript validations, dynamic field population from Symitar web services, conditional section display logic, and real-time error state handling to improve first-pass data quality and reduce manual correction workflows.
+          </div>
+          <div class="project-description">
+            Integrated eSign digital signature API with PowerFrame submission workflows, enabling end-to-end digital account opening and loan origination processes with full audit trail and compliance documentation.
+          </div>
+          <div class="project-tech">Technologies: PowerFrame/PowerDocs platform, JavaScript (ES6+), HTML/CSS, Symitar web services API, eSign API integration, JSON data interchange</div>
+        </div>
+
+        <div class="project">
+          <div class="project-title">Python — File Watcher & ETL Utilities</div>
+          <div class="project-meta">Batch processing • audit-friendly logging</div>
+          <div class="project-description">
+            Architected automated file monitoring service using Python watchdog library to detect incoming files, apply business-rule transformations (CSV parsing, PDF generation, data validation), and route processed outputs to designated network shares across operations and lending departments; eliminated manual file handling bottlenecks.
+          </div>
+          <div class="project-description">
+            Implemented structured logging with rotation policies, exception tracking, and email alerting for processing failures; maintained audit trail for compliance review and troubleshooting.
+          </div>
+          <div class="project-tech">Technologies: Python 3.x, file system monitoring (watchdog library), PDF manipulation (PyPDF2/ReportLab), CSV/Excel processing (pandas), scheduled tasks (Windows Task Scheduler), SMTP email alerting</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+          <div class="degree">Bachelor of Science in Accountancy</div>
+          <div class="school">University of Louisville</div>
+          <div class="grad-date">Graduated 2014</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
